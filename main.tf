@@ -34,7 +34,7 @@ module "blog_vpc" {
   }
 }
 
-resource "aws_instance" "blog" {
+resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
@@ -54,7 +54,7 @@ module "alb" {
 
   vpc_id  	  = module.blog_vpc.vpc_id
   subnets 	  = module.blog_vpc.public_subnets
-  security_groups = module.blog_sg.security_group_id
+  security_groups = [module.blog_sg.security_group_id]
 
   target_groups = {
       name_prefix      = "blog-"
