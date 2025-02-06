@@ -54,13 +54,10 @@ module "blog_alb" {
     }
   ]
 
-  listeners = [
-    {
+  listeners = {
       port     = 80
       protocol = "HTTP"
-      target_group_index = 0
-    }
-  ]
+  }
 
   tags = {
     Environment = "dev"
